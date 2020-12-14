@@ -1,0 +1,196 @@
+{
+    "schema": "https://iotx-tsl.oss-ap-southeast-1.aliyuncs.com/schema.json",
+    "profile": {
+      "productKey": "Secrets_Not_Shown"
+    },
+    "properties": [
+      {
+        "identifier": "Flame",
+        "name": "火情",
+        "accessMode": "r",
+        "required": false,
+        "dataType": {
+          "type": "int",
+          "specs": {
+            "min": "0",
+            "max": "2000",
+            "step": "1"
+          }
+        }
+      },
+      {
+        "identifier": "Humidity",
+        "name": "相对湿度",
+        "accessMode": "r",
+        "desc": "传感器-湿度",
+        "required": false,
+        "dataType": {
+          "type": "float",
+          "specs": {
+            "min": "0",
+            "max": "100",
+            "unit": "%",
+            "unitName": "百分比",
+            "step": "0.1"
+          }
+        }
+      },
+      {
+        "identifier": "Temperature",
+        "name": "温度",
+        "accessMode": "r",
+        "desc": "传感器-只读",
+        "required": false,
+        "dataType": {
+          "type": "float",
+          "specs": {
+            "min": "-50",
+            "max": "100",
+            "unit": "°C",
+            "unitName": "摄氏度",
+            "step": "0.1"
+          }
+        }
+      }
+    ],
+    "events": [
+      {
+        "identifier": "post",
+        "name": "post",
+        "type": "info",
+        "required": true,
+        "desc": "属性上报",
+        "method": "thing.event.property.post",
+        "outputData": [
+          {
+            "identifier": "Flame",
+            "name": "火情",
+            "dataType": {
+              "type": "int",
+              "specs": {
+                "min": "0",
+                "max": "2000",
+                "step": "1"
+              }
+            }
+          },
+          {
+            "identifier": "Humidity",
+            "name": "相对湿度",
+            "dataType": {
+              "type": "float",
+              "specs": {
+                "min": "0",
+                "max": "100",
+                "unit": "%",
+                "unitName": "百分比",
+                "step": "0.1"
+              }
+            }
+          },
+          {
+            "identifier": "Temperature",
+            "name": "温度",
+            "dataType": {
+              "type": "float",
+              "specs": {
+                "min": "-50",
+                "max": "100",
+                "unit": "°C",
+                "unitName": "摄氏度",
+                "step": "0.1"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "services": [
+      {
+        "identifier": "set",
+        "name": "set",
+        "required": true,
+        "callType": "async",
+        "desc": "属性设置",
+        "method": "thing.service.property.set",
+        "inputData": [],
+        "outputData": []
+      },
+      {
+        "identifier": "get",
+        "name": "get",
+        "required": true,
+        "callType": "async",
+        "desc": "属性获取",
+        "method": "thing.service.property.get",
+        "inputData": [
+          "Flame",
+          "Humidity",
+          "Temperature"
+        ],
+        "outputData": [
+          {
+            "identifier": "Flame",
+            "name": "火情",
+            "dataType": {
+              "type": "int",
+              "specs": {
+                "min": "0",
+                "max": "2000",
+                "step": "1"
+              }
+            }
+          },
+          {
+            "identifier": "Humidity",
+            "name": "相对湿度",
+            "dataType": {
+              "type": "float",
+              "specs": {
+                "min": "0",
+                "max": "100",
+                "unit": "%",
+                "unitName": "百分比",
+                "step": "0.1"
+              }
+            }
+          },
+          {
+            "identifier": "Temperature",
+            "name": "温度",
+            "dataType": {
+              "type": "float",
+              "specs": {
+                "min": "-50",
+                "max": "100",
+                "unit": "°C",
+                "unitName": "摄氏度",
+                "step": "0.1"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "identifier": "alarm_free",
+        "name": "火情警报解除",
+        "required": false,
+        "callType": "async",
+        "method": "thing.service.alarm_free",
+        "inputData": [
+          {
+            "identifier": "alarm_switch",
+            "name": "警报开关",
+            "dataType": {
+              "type": "bool",
+              "specs": {
+                "0": "关",
+                "1": "开"
+              }
+            }
+          }
+        ],
+        "outputData": []
+      }
+    ]
+  }
